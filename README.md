@@ -80,4 +80,5 @@ This project follows Frame.io's "Fluid UI" philosophy:
 - [Next.js Documentation](https://nextjs.org/docs)
 - [React Server Components](https://react.dev/reference/rsc/server-components)
 - [Frame.io Engineering Blog](https://blog.frame.io/)
+
 # frameio-practice
