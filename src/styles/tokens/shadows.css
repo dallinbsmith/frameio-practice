@@ -1,0 +1,170 @@
+/**
+ * ==========================================================================
+ * SHADOW TOKENS
+ * ==========================================================================
+ *
+ * Shadow system for creating depth and elevation.
+ *
+ * Shadow Philosophy:
+ * - Subtle shadows for dark themes (shadows less visible on dark)
+ * - Multiple layers for realistic depth
+ * - Colored shadows for brand elements
+ *
+ * ==========================================================================
+ */
+
+:root {
+  /* ========================================================================
+     ELEVATION SHADOWS
+     ========================================================================
+     Based on elevation levels (like Material Design).
+     Higher elevation = larger, more diffused shadows.
+  */
+
+  /* Level 0: Flat, no shadow */
+  --shadow-none: none;
+
+  /* Level 1: Slight lift (cards, buttons at rest) */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+
+  /* Level 2: Default elevation (cards, dropdowns) */
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+
+  /* Level 3: Medium elevation (hover states, raised cards) */
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+  /* Level 4: High elevation (modals, popovers) */
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  /* Level 5: Highest elevation (full-screen overlays) */
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Level 6: Maximum depth */
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+  /* ========================================================================
+     INSET SHADOWS
+     ========================================================================
+     For pressed states and recessed elements.
+  */
+
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+  --shadow-inner-md: inset 0 4px 6px 0 rgb(0 0 0 / 0.1);
+  --shadow-inner-lg: inset 0 6px 12px 0 rgb(0 0 0 / 0.15);
+
+  /* ========================================================================
+     BRAND / GLOW SHADOWS
+     ========================================================================
+     Colored shadows for emphasis and branding.
+  */
+
+  /* Purple glow (brand) */
+  --shadow-glow-brand: 0 0 20px rgb(124 58 237 / 0.3);
+  --shadow-glow-brand-sm: 0 0 10px rgb(124 58 237 / 0.2);
+  --shadow-glow-brand-lg: 0 0 40px rgb(124 58 237 / 0.4);
+
+  /* Status glows */
+  --shadow-glow-success: 0 0 20px rgb(16 185 129 / 0.3);
+  --shadow-glow-warning: 0 0 20px rgb(245 158 11 / 0.3);
+  --shadow-glow-error: 0 0 20px rgb(239 68 68 / 0.3);
+  --shadow-glow-info: 0 0 20px rgb(59 130 246 / 0.3);
+
+  /* ========================================================================
+     FOCUS SHADOWS
+     ========================================================================
+     For keyboard focus states (accessibility).
+  */
+
+  --shadow-focus:
+    0 0 0 2px var(--color-bg-primary), 0 0 0 4px var(--color-border-focus);
+
+  --shadow-focus-brand:
+    0 0 0 2px var(--color-bg-primary), 0 0 0 4px var(--color-brand-500);
+
+  --shadow-focus-error:
+    0 0 0 2px var(--color-bg-primary), 0 0 0 4px var(--color-red-500);
+
+  /* ========================================================================
+     SEMANTIC SHADOWS
+     ========================================================================
+     Named shadows for specific components.
+  */
+
+  /* Cards */
+  --shadow-card: var(--shadow-sm);
+  --shadow-card-hover: var(--shadow-md);
+  --shadow-card-active: var(--shadow-lg);
+
+  /* Buttons */
+  --shadow-button: var(--shadow-xs);
+  --shadow-button-hover: var(--shadow-sm);
+  --shadow-button-active: var(--shadow-inner);
+  --shadow-button-primary: 0 4px 14px rgb(124 58 237 / 0.25);
+  --shadow-button-primary-hover: 0 6px 20px rgb(124 58 237 / 0.35);
+
+  /* Inputs */
+  --shadow-input: var(--shadow-inner);
+  --shadow-input-focus: var(--shadow-focus);
+
+  /* Dropdowns & Popovers */
+  --shadow-dropdown: var(--shadow-lg);
+  --shadow-popover: 0 10px 40px rgb(0 0 0 / 0.2);
+
+  /* Modals */
+  --shadow-modal: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+
+  /* Tooltips */
+  --shadow-tooltip: var(--shadow-md);
+
+  /* Navigation */
+  --shadow-header: 0 1px 0 rgb(255 255 255 / 0.05);
+  --shadow-header-scrolled: 0 4px 20px rgb(0 0 0 / 0.3);
+
+  /* Sticky elements */
+  --shadow-sticky: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+/* ==========================================================================
+   DARK THEME SHADOW ADJUSTMENTS
+   ========================================================================== */
+
+/* Dark theme needs stronger shadows to be visible */
+[data-theme='dark'],
+:root {
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.2);
+
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+}
+
+/* ==========================================================================
+   LIGHT THEME SHADOW ADJUSTMENTS
+   ========================================================================== */
+
+[data-theme='light'] {
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+
+  --shadow-md:
+    0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.06);
+
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.06);
+
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+
+  /* Lighter header shadow for light theme */
+  --shadow-header: 0 1px 0 rgb(0 0 0 / 0.05);
+  --shadow-header-scrolled: 0 4px 20px rgb(0 0 0 / 0.1);
+}

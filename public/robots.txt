@@ -1,0 +1,12 @@
+# Frame.io Study Guide
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+
+# Disallow admin and API routes
+Disallow: /api/
+
+# Sitemaps
+# Note: Update with production URL before deployment
+Sitemap: https://your-domain.com/sitemap.xml

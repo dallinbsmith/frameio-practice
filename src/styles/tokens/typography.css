@@ -1,0 +1,308 @@
+/**
+ * ==========================================================================
+ * TYPOGRAPHY TOKENS
+ * ==========================================================================
+ *
+ * Comprehensive typography system with:
+ * - Font family stacks
+ * - Fluid type scale (clamp-based for responsive sizing)
+ * - Font weights
+ * - Line heights
+ * - Letter spacing
+ * - Text styles (pre-composed combinations)
+ *
+ * The fluid type scale uses clamp() for smooth scaling between breakpoints:
+ * clamp(min, preferred, max)
+ *
+ * ==========================================================================
+ */
+
+:root {
+  /* ========================================================================
+     FONT FAMILIES
+     ======================================================================== */
+
+  /* Primary sans-serif stack - optimized for readability */
+  --font-sans:
+    system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  /* Monospace stack - for code and technical content */
+  --font-mono:
+    ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+
+  /* Display font - for large headings (can be customized with web fonts) */
+  --font-display: var(--font-sans);
+
+  /* ========================================================================
+     FONT SIZES - FLUID SCALE
+     ========================================================================
+     Using a modular scale with ratio ~1.2 (minor third)
+
+     Formula: clamp(minSize, preferredSize, maxSize)
+     - minSize: Minimum at 320px viewport
+     - preferredSize: Fluid calculation based on viewport
+     - maxSize: Maximum at 1440px viewport
+
+     Scale:
+     xs:   12px → 13px
+     sm:   13px → 14px
+     base: 14px → 16px
+     lg:   16px → 18px
+     xl:   18px → 20px
+     2xl:  20px → 24px
+     3xl:  24px → 30px
+     4xl:  30px → 36px
+     5xl:  36px → 48px
+     6xl:  48px → 60px
+     7xl:  60px → 72px
+     8xl:  72px → 96px
+     9xl:  96px → 128px
+  */
+
+  --font-size-xs: clamp(0.75rem, 0.714rem + 0.179vw, 0.8125rem);
+  --font-size-sm: clamp(0.8125rem, 0.777rem + 0.179vw, 0.875rem);
+  --font-size-base: clamp(0.875rem, 0.821rem + 0.268vw, 1rem);
+  --font-size-lg: clamp(1rem, 0.946rem + 0.268vw, 1.125rem);
+  --font-size-xl: clamp(1.125rem, 1.071rem + 0.268vw, 1.25rem);
+  --font-size-2xl: clamp(1.25rem, 1.143rem + 0.536vw, 1.5rem);
+  --font-size-3xl: clamp(1.5rem, 1.339rem + 0.804vw, 1.875rem);
+  --font-size-4xl: clamp(1.875rem, 1.714rem + 0.804vw, 2.25rem);
+  --font-size-5xl: clamp(2.25rem, 1.929rem + 1.607vw, 3rem);
+  --font-size-6xl: clamp(3rem, 2.679rem + 1.607vw, 3.75rem);
+  --font-size-7xl: clamp(3.75rem, 3.429rem + 1.607vw, 4.5rem);
+  --font-size-8xl: clamp(4.5rem, 3.857rem + 3.214vw, 6rem);
+  --font-size-9xl: clamp(6rem, 5.143rem + 4.286vw, 8rem);
+
+  /* ========================================================================
+     FONT WEIGHTS
+     ======================================================================== */
+
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  /* ========================================================================
+     LINE HEIGHTS
+     ========================================================================
+     Named for their use case rather than just values.
+  */
+
+  --line-height-none: 1;
+  --line-height-tight: 1.1; /* Headings, display text */
+  --line-height-snug: 1.25; /* Subheadings, short text */
+  --line-height-normal: 1.5; /* Body text (WCAG recommended) */
+  --line-height-relaxed: 1.625; /* Long-form content */
+  --line-height-loose: 2; /* Spacious reading */
+
+  /* ========================================================================
+     LETTER SPACING (Tracking)
+     ======================================================================== */
+
+  --letter-spacing-tighter: -0.05em; /* Large display headings */
+  --letter-spacing-tight: -0.025em; /* Headings */
+  --letter-spacing-normal: 0em; /* Body text */
+  --letter-spacing-wide: 0.025em; /* Small text, labels */
+  --letter-spacing-wider: 0.05em; /* Eyebrow text */
+  --letter-spacing-widest: 0.1em; /* All caps, buttons */
+
+  /* ========================================================================
+     TEXT DECORATION
+     ======================================================================== */
+
+  --text-decoration-thickness: 1px;
+  --text-decoration-thickness-bold: 2px;
+  --text-underline-offset: 0.2em;
+
+  /* ========================================================================
+     PARAGRAPH SETTINGS
+     ======================================================================== */
+
+  --paragraph-spacing: 1.5em;
+  --paragraph-indent: 0;
+
+  /* ========================================================================
+     TEXT STYLES (Pre-composed)
+     ========================================================================
+     These combine size, weight, line-height, and letter-spacing
+     for consistent typography across components.
+  */
+
+  /* Display - Hero headings, large statements */
+  --text-display-xl-size: var(--font-size-7xl);
+  --text-display-xl-weight: var(--font-weight-bold);
+  --text-display-xl-line-height: var(--line-height-tight);
+  --text-display-xl-letter-spacing: var(--letter-spacing-tighter);
+
+  --text-display-lg-size: var(--font-size-6xl);
+  --text-display-lg-weight: var(--font-weight-bold);
+  --text-display-lg-line-height: var(--line-height-tight);
+  --text-display-lg-letter-spacing: var(--letter-spacing-tighter);
+
+  --text-display-md-size: var(--font-size-5xl);
+  --text-display-md-weight: var(--font-weight-bold);
+  --text-display-md-line-height: var(--line-height-tight);
+  --text-display-md-letter-spacing: var(--letter-spacing-tight);
+
+  /* Headings */
+  --text-heading-xl-size: var(--font-size-4xl);
+  --text-heading-xl-weight: var(--font-weight-semibold);
+  --text-heading-xl-line-height: var(--line-height-snug);
+  --text-heading-xl-letter-spacing: var(--letter-spacing-tight);
+
+  --text-heading-lg-size: var(--font-size-3xl);
+  --text-heading-lg-weight: var(--font-weight-semibold);
+  --text-heading-lg-line-height: var(--line-height-snug);
+  --text-heading-lg-letter-spacing: var(--letter-spacing-tight);
+
+  --text-heading-md-size: var(--font-size-2xl);
+  --text-heading-md-weight: var(--font-weight-semibold);
+  --text-heading-md-line-height: var(--line-height-snug);
+  --text-heading-md-letter-spacing: var(--letter-spacing-normal);
+
+  --text-heading-sm-size: var(--font-size-xl);
+  --text-heading-sm-weight: var(--font-weight-medium);
+  --text-heading-sm-line-height: var(--line-height-snug);
+  --text-heading-sm-letter-spacing: var(--letter-spacing-normal);
+
+  --text-heading-xs-size: var(--font-size-lg);
+  --text-heading-xs-weight: var(--font-weight-medium);
+  --text-heading-xs-line-height: var(--line-height-snug);
+  --text-heading-xs-letter-spacing: var(--letter-spacing-normal);
+
+  /* Body */
+  --text-body-lg-size: var(--font-size-lg);
+  --text-body-lg-weight: var(--font-weight-normal);
+  --text-body-lg-line-height: var(--line-height-relaxed);
+  --text-body-lg-letter-spacing: var(--letter-spacing-normal);
+
+  --text-body-md-size: var(--font-size-base);
+  --text-body-md-weight: var(--font-weight-normal);
+  --text-body-md-line-height: var(--line-height-normal);
+  --text-body-md-letter-spacing: var(--letter-spacing-normal);
+
+  --text-body-sm-size: var(--font-size-sm);
+  --text-body-sm-weight: var(--font-weight-normal);
+  --text-body-sm-line-height: var(--line-height-normal);
+  --text-body-sm-letter-spacing: var(--letter-spacing-normal);
+
+  /* Labels & UI Text */
+  --text-label-lg-size: var(--font-size-base);
+  --text-label-lg-weight: var(--font-weight-medium);
+  --text-label-lg-line-height: var(--line-height-tight);
+  --text-label-lg-letter-spacing: var(--letter-spacing-normal);
+
+  --text-label-md-size: var(--font-size-sm);
+  --text-label-md-weight: var(--font-weight-medium);
+  --text-label-md-line-height: var(--line-height-tight);
+  --text-label-md-letter-spacing: var(--letter-spacing-wide);
+
+  --text-label-sm-size: var(--font-size-xs);
+  --text-label-sm-weight: var(--font-weight-medium);
+  --text-label-sm-line-height: var(--line-height-tight);
+  --text-label-sm-letter-spacing: var(--letter-spacing-wide);
+
+  /* Eyebrow - Small uppercase labels above headings */
+  --text-eyebrow-size: var(--font-size-sm);
+  --text-eyebrow-weight: var(--font-weight-semibold);
+  --text-eyebrow-line-height: var(--line-height-tight);
+  --text-eyebrow-letter-spacing: var(--letter-spacing-widest);
+
+  /* Caption & Fine Print */
+  --text-caption-size: var(--font-size-xs);
+  --text-caption-weight: var(--font-weight-normal);
+  --text-caption-line-height: var(--line-height-normal);
+  --text-caption-letter-spacing: var(--letter-spacing-normal);
+
+  /* Code */
+  --text-code-size: 0.9em; /* Relative to parent */
+  --text-code-weight: var(--font-weight-normal);
+  --text-code-line-height: var(--line-height-relaxed);
+  --text-code-letter-spacing: var(--letter-spacing-normal);
+}
+
+/* ==========================================================================
+   TYPOGRAPHY UTILITY CLASSES
+   ========================================================================== */
+
+/* Font Families */
+.font-sans {
+  font-family: var(--font-sans);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Text Wrapping */
+.text-balance {
+  text-wrap: balance;
+}
+.text-pretty {
+  text-wrap: pretty;
+}
+
+/* Text Transform */
+.uppercase {
+  text-transform: uppercase;
+}
+.lowercase {
+  text-transform: lowercase;
+}
+.capitalize {
+  text-transform: capitalize;
+}
+.normal-case {
+  text-transform: none;
+}
+
+/* Text Alignment */
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.text-justify {
+  text-align: justify;
+}
+
+/* Text Overflow */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Line Clamp (multi-line truncation) */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

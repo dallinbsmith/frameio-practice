@@ -1,0 +1,251 @@
+/**
+ * ==========================================================================
+ * DESIGN SYSTEM TOKENS
+ * ==========================================================================
+ *
+ * This file aggregates all design token files into a single import.
+ *
+ * Token Categories:
+ * 1. Colors     - Color palette, semantic colors, themes
+ * 2. Typography - Fonts, sizes, weights, line-heights
+ * 3. Spacing    - Spacing scale, containers, borders
+ * 4. Shadows    - Elevation, glow, focus shadows
+ * 5. Animations - Durations, easings, keyframes
+ * 6. Breakpoints - Responsive utilities
+ *
+ * Usage:
+ *   @import '@/styles/index.css';
+ *
+ * Or in globals.css:
+ *   @import './index.css';
+ *
+ * ==========================================================================
+ */
+
+/* Core Token Files */
+@import './tokens/colors.css';
+@import './tokens/typography.css';
+@import './tokens/spacing.css';
+@import './tokens/shadows.css';
+@import './tokens/animations.css';
+@import './tokens/breakpoints.css';
+
+/* ==========================================================================
+   ADDITIONAL UTILITY LAYERS
+   ==========================================================================
+   Add any additional utility classes that don't fit in token files.
+*/
+
+/* Visually Hidden (Screen Reader Only) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.not-sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Focus Visible Utility */
+.focus-visible:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+/* Interactive Elements - Remove default focus outline, add custom */
+.interactive {
+  outline: none;
+}
+
+.interactive:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+/* Clickable - Full interactive treatment */
+.clickable {
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Disabled State */
+.disabled,
+[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Reset Button */
+.button-reset {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Reset Link */
+.link-reset {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Reset List */
+.list-reset {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ==========================================================================
+   LAYOUT UTILITIES
+   ========================================================================== */
+
+/* Flex utilities */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.gap-1 {
+  gap: var(--spacing-1);
+}
+.gap-2 {
+  gap: var(--spacing-2);
+}
+.gap-3 {
+  gap: var(--spacing-3);
+}
+.gap-4 {
+  gap: var(--spacing-4);
+}
+.gap-6 {
+  gap: var(--spacing-6);
+}
+.gap-8 {
+  gap: var(--spacing-8);
+}
+
+/* Center content */
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Stack (vertical spacing) */
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.stack > * + * {
+  margin-top: var(--space-stack-md);
+}
+
+.stack-sm > * + * {
+  margin-top: var(--space-stack-sm);
+}
+
+.stack-lg > * + * {
+  margin-top: var(--space-stack-lg);
+}
+
+/* Cluster (horizontal wrapping) */
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+}
+
+/* Full width */
+.w-full {
+  width: 100%;
+}
+
+/* Full height */
+.h-full {
+  height: 100%;
+}
+
+/* Min height screen */
+.min-h-screen {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* ==========================================================================
+   CONTAINER UTILITY
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+.container-narrow {
+  max-width: var(--container-4xl);
+}
+
+.container-wide {
+  max-width: var(--container-screen);
+}
+
+.container-prose {
+  max-width: var(--container-prose);
+}

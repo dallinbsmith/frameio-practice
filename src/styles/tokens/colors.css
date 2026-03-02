@@ -1,0 +1,298 @@
+/**
+ * ==========================================================================
+ * COLOR TOKENS
+ * ==========================================================================
+ *
+ * Frame.io Vapor-inspired color system using LCH color space principles.
+ *
+ * LCH (Lightness, Chroma, Hue) provides perceptual uniformity - colors with
+ * the same lightness value appear equally bright to human eyes, unlike HSL.
+ *
+ * Color Scale Convention:
+ * - 50-100: Lightest shades (highlights, backgrounds)
+ * - 200-400: Light shades (secondary elements)
+ * - 500: Base color (primary use)
+ * - 600-700: Dark shades (hover states, emphasis)
+ * - 800-950: Darkest shades (text on light, borders)
+ *
+ * ==========================================================================
+ */
+
+:root {
+  /* ========================================================================
+     NEUTRAL PALETTE (Gray Scale)
+     ========================================================================
+     Built with consistent perceptual lightness steps.
+     LCH Lightness: 98 → 5 (near-white to near-black)
+  */
+
+  --color-neutral-50: #fafafa; /* LCH: 98% L, 0 C */
+  --color-neutral-100: #f5f5f5; /* LCH: 96% L, 0 C */
+  --color-neutral-200: #e5e5e5; /* LCH: 91% L, 0 C */
+  --color-neutral-300: #d4d4d4; /* LCH: 84% L, 0 C */
+  --color-neutral-400: #a3a3a3; /* LCH: 68% L, 0 C */
+  --color-neutral-500: #737373; /* LCH: 50% L, 0 C */
+  --color-neutral-600: #525252; /* LCH: 37% L, 0 C */
+  --color-neutral-700: #404040; /* LCH: 28% L, 0 C */
+  --color-neutral-800: #262626; /* LCH: 17% L, 0 C */
+  --color-neutral-850: #1a1a1a; /* LCH: 12% L, 0 C */
+  --color-neutral-900: #171717; /* LCH: 10% L, 0 C */
+  --color-neutral-925: #141414; /* LCH: 8% L, 0 C */
+  --color-neutral-950: #0a0a0a; /* LCH: 5% L, 0 C */
+
+  /* ========================================================================
+     BRAND PALETTE (Purple)
+     ========================================================================
+     Frame.io's signature purple, built for accessibility.
+     Base hue: ~270° (violet-purple)
+  */
+
+  --color-brand-50: #faf5ff; /* LCH: 97% L, 8 C, 300 H */
+  --color-brand-100: #f3e8ff; /* LCH: 93% L, 18 C, 300 H */
+  --color-brand-200: #e9d5ff; /* LCH: 87% L, 32 C, 300 H */
+  --color-brand-300: #d8b4fe; /* LCH: 77% L, 48 C, 300 H */
+  --color-brand-400: #c084fc; /* LCH: 65% L, 62 C, 295 H */
+  --color-brand-500: #a855f7; /* LCH: 53% L, 72 C, 292 H */
+  --color-brand-600: #9333ea; /* LCH: 45% L, 78 C, 290 H */
+  --color-brand-700: #7c3aed; /* LCH: 40% L, 75 C, 285 H - PRIMARY */
+  --color-brand-800: #6b21a8; /* LCH: 32% L, 65 C, 290 H */
+  --color-brand-900: #581c87; /* LCH: 25% L, 55 C, 292 H */
+  --color-brand-950: #3b0764; /* LCH: 15% L, 45 C, 295 H */
+
+  /* ========================================================================
+     ACCENT PALETTES
+     ======================================================================== */
+
+  /* Blue - Information, Links */
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-200: #bfdbfe;
+  --color-blue-300: #93c5fd;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+  --color-blue-800: #1e40af;
+  --color-blue-900: #1e3a8a;
+  --color-blue-950: #172554;
+
+  /* Green - Success, Positive */
+  --color-green-50: #ecfdf5;
+  --color-green-100: #d1fae5;
+  --color-green-200: #a7f3d0;
+  --color-green-300: #6ee7b7;
+  --color-green-400: #34d399;
+  --color-green-500: #10b981;
+  --color-green-600: #059669;
+  --color-green-700: #047857;
+  --color-green-800: #065f46;
+  --color-green-900: #064e3b;
+  --color-green-950: #022c22;
+
+  /* Yellow/Amber - Warning, Caution */
+  --color-yellow-50: #fffbeb;
+  --color-yellow-100: #fef3c7;
+  --color-yellow-200: #fde68a;
+  --color-yellow-300: #fcd34d;
+  --color-yellow-400: #fbbf24;
+  --color-yellow-500: #f59e0b;
+  --color-yellow-600: #d97706;
+  --color-yellow-700: #b45309;
+  --color-yellow-800: #92400e;
+  --color-yellow-900: #78350f;
+  --color-yellow-950: #451a03;
+
+  /* Red - Error, Destructive */
+  --color-red-50: #fef2f2;
+  --color-red-100: #fee2e2;
+  --color-red-200: #fecaca;
+  --color-red-300: #fca5a5;
+  --color-red-400: #f87171;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-red-700: #b91c1c;
+  --color-red-800: #991b1b;
+  --color-red-900: #7f1d1d;
+  --color-red-950: #450a0a;
+
+  /* Cyan - Accent, Highlights */
+  --color-cyan-50: #ecfeff;
+  --color-cyan-100: #cffafe;
+  --color-cyan-200: #a5f3fc;
+  --color-cyan-300: #67e8f9;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-600: #0891b2;
+  --color-cyan-700: #0e7490;
+  --color-cyan-800: #155e75;
+  --color-cyan-900: #164e63;
+  --color-cyan-950: #083344;
+
+  /* ========================================================================
+     SEMANTIC COLORS - DARK THEME (Default)
+     ========================================================================
+     These map raw palette values to semantic purposes.
+     Override in [data-theme="light"] for light mode.
+  */
+
+  /* Backgrounds */
+  --color-bg-primary: var(--color-neutral-950);
+  --color-bg-secondary: var(--color-neutral-925);
+  --color-bg-tertiary: var(--color-neutral-900);
+  --color-bg-elevated: var(--color-neutral-850);
+  --color-bg-surface: var(--color-neutral-800);
+  --color-bg-surface-hover: var(--color-neutral-700);
+  --color-bg-surface-active: var(--color-neutral-600);
+  --color-bg-overlay: rgb(0 0 0 / 0.6);
+  --color-bg-inverse: var(--color-neutral-50);
+
+  /* Foreground / Text */
+  --color-fg-primary: var(--color-neutral-50);
+  --color-fg-secondary: var(--color-neutral-400);
+  --color-fg-tertiary: var(--color-neutral-500);
+  --color-fg-muted: var(--color-neutral-600);
+  --color-fg-inverse: var(--color-neutral-950);
+  --color-fg-brand: var(--color-brand-400);
+  --color-fg-link: var(--color-brand-400);
+  --color-fg-link-hover: var(--color-brand-300);
+
+  /* Borders */
+  --color-border-default: var(--color-neutral-800);
+  --color-border-subtle: var(--color-neutral-850);
+  --color-border-emphasis: var(--color-neutral-700);
+  --color-border-strong: var(--color-neutral-600);
+  --color-border-brand: var(--color-brand-700);
+  --color-border-focus: var(--color-brand-500);
+
+  /* Interactive States */
+  --color-interactive-primary: var(--color-brand-700);
+  --color-interactive-primary-hover: var(--color-brand-600);
+  --color-interactive-primary-active: var(--color-brand-800);
+  --color-interactive-secondary: var(--color-neutral-800);
+  --color-interactive-secondary-hover: var(--color-neutral-700);
+  --color-interactive-secondary-active: var(--color-neutral-600);
+
+  /* Status Colors */
+  --color-status-info: var(--color-blue-500);
+  --color-status-info-bg: rgb(59 130 246 / 0.15);
+  --color-status-success: var(--color-green-500);
+  --color-status-success-bg: rgb(16 185 129 / 0.15);
+  --color-status-warning: var(--color-yellow-500);
+  --color-status-warning-bg: rgb(245 158 11 / 0.15);
+  --color-status-error: var(--color-red-500);
+  --color-status-error-bg: rgb(239 68 68 / 0.15);
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(
+    135deg,
+    var(--color-brand-600) 0%,
+    var(--color-brand-800) 100%
+  );
+  --gradient-brand-vibrant: linear-gradient(
+    135deg,
+    var(--color-brand-500) 0%,
+    var(--color-brand-700) 100%
+  );
+  --gradient-surface: linear-gradient(
+    180deg,
+    var(--color-bg-elevated) 0%,
+    var(--color-bg-primary) 100%
+  );
+  --gradient-hero: linear-gradient(
+    180deg,
+    var(--color-bg-secondary) 0%,
+    var(--color-bg-primary) 50%
+  );
+  --gradient-radial-glow: radial-gradient(
+    circle at center,
+    var(--color-brand-700) 0%,
+    transparent 70%
+  );
+
+  /* Shadows (semantic) */
+  --color-shadow: rgb(0 0 0 / 0.5);
+  --color-shadow-brand: rgb(124 58 237 / 0.25);
+}
+
+/* ==========================================================================
+   LIGHT THEME OVERRIDES
+   ==========================================================================
+   Apply with: <html data-theme="light"> or class="theme-light"
+*/
+
+[data-theme='light'],
+.theme-light {
+  /* Backgrounds */
+  --color-bg-primary: var(--color-neutral-50);
+  --color-bg-secondary: var(--color-neutral-100);
+  --color-bg-tertiary: var(--color-neutral-200);
+  --color-bg-elevated: #ffffff;
+  --color-bg-surface: #ffffff;
+  --color-bg-surface-hover: var(--color-neutral-100);
+  --color-bg-surface-active: var(--color-neutral-200);
+  --color-bg-overlay: rgb(0 0 0 / 0.4);
+  --color-bg-inverse: var(--color-neutral-900);
+
+  /* Foreground / Text */
+  --color-fg-primary: var(--color-neutral-900);
+  --color-fg-secondary: var(--color-neutral-600);
+  --color-fg-tertiary: var(--color-neutral-500);
+  --color-fg-muted: var(--color-neutral-400);
+  --color-fg-inverse: var(--color-neutral-50);
+  --color-fg-brand: var(--color-brand-700);
+  --color-fg-link: var(--color-brand-700);
+  --color-fg-link-hover: var(--color-brand-600);
+
+  /* Borders */
+  --color-border-default: var(--color-neutral-200);
+  --color-border-subtle: var(--color-neutral-100);
+  --color-border-emphasis: var(--color-neutral-300);
+  --color-border-strong: var(--color-neutral-400);
+  --color-border-brand: var(--color-brand-600);
+  --color-border-focus: var(--color-brand-500);
+
+  /* Interactive States */
+  --color-interactive-primary: var(--color-brand-600);
+  --color-interactive-primary-hover: var(--color-brand-700);
+  --color-interactive-primary-active: var(--color-brand-800);
+  --color-interactive-secondary: var(--color-neutral-200);
+  --color-interactive-secondary-hover: var(--color-neutral-300);
+  --color-interactive-secondary-active: var(--color-neutral-400);
+
+  /* Status Colors - adjusted for light backgrounds */
+  --color-status-info-bg: rgb(59 130 246 / 0.1);
+  --color-status-success-bg: rgb(16 185 129 / 0.1);
+  --color-status-warning-bg: rgb(245 158 11 / 0.1);
+  --color-status-error-bg: rgb(239 68 68 / 0.1);
+
+  /* Shadows */
+  --color-shadow: rgb(0 0 0 / 0.1);
+  --color-shadow-brand: rgb(124 58 237 / 0.15);
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: HIGH CONTRAST MODE
+   ========================================================================== */
+
+@media (prefers-contrast: high) {
+  :root {
+    --color-fg-secondary: var(--color-neutral-300);
+    --color-fg-tertiary: var(--color-neutral-400);
+    --color-border-default: var(--color-neutral-600);
+    --color-border-subtle: var(--color-neutral-700);
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: FORCED COLORS MODE (Windows High Contrast)
+   ========================================================================== */
+
+@media (forced-colors: active) {
+  :root {
+    --color-interactive-primary: LinkText;
+    --color-interactive-primary-hover: LinkText;
+    --color-fg-primary: CanvasText;
+    --color-bg-primary: Canvas;
+    --color-border-focus: Highlight;
+  }
+}

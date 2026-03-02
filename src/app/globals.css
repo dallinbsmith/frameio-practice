@@ -1,0 +1,362 @@
+/**
+ * ==========================================================================
+ * GLOBAL STYLES
+ * ==========================================================================
+ *
+ * This file contains:
+ * 1. Design system token imports
+ * 2. CSS reset (minimal, modern)
+ * 3. Base element styles
+ * 4. Global utility styles
+ *
+ * ==========================================================================
+ */
+
+/* Import Design System Tokens */
+@import '../styles/index.css';
+
+/* ==========================================================================
+   CSS RESET
+   ==========================================================================
+   Modern, minimal reset focusing on sensible defaults.
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Smooth scrolling (respects prefers-reduced-motion via animations.css) */
+  scroll-behavior: smooth;
+
+  /* Prevent text size adjustment on orientation change */
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+
+  /* Better font rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+
+  /* Optimize font features */
+  font-feature-settings:
+    'kern' 1,
+    'liga' 1;
+
+  /* Tab size for code */
+  tab-size: 4;
+}
+
+body {
+  /* Minimum height */
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  /* Typography */
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+
+  /* Colors */
+  color: var(--color-fg-primary);
+  background-color: var(--color-bg-primary);
+
+  /* Prevent horizontal scroll */
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   BASE ELEMENT STYLES
+   ========================================================================== */
+
+/* Images and media */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Form elements inherit font */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* Button reset */
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* Link reset */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Heading styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+h1 {
+  font-size: var(--text-display-md-size);
+  font-weight: var(--text-display-md-weight);
+  line-height: var(--text-display-md-line-height);
+  letter-spacing: var(--text-display-md-letter-spacing);
+}
+
+h2 {
+  font-size: var(--text-heading-xl-size);
+  font-weight: var(--text-heading-xl-weight);
+  line-height: var(--text-heading-xl-line-height);
+  letter-spacing: var(--text-heading-xl-letter-spacing);
+}
+
+h3 {
+  font-size: var(--text-heading-lg-size);
+  font-weight: var(--text-heading-lg-weight);
+  line-height: var(--text-heading-lg-line-height);
+  letter-spacing: var(--text-heading-lg-letter-spacing);
+}
+
+h4 {
+  font-size: var(--text-heading-md-size);
+  font-weight: var(--text-heading-md-weight);
+  line-height: var(--text-heading-md-line-height);
+  letter-spacing: var(--text-heading-md-letter-spacing);
+}
+
+h5 {
+  font-size: var(--text-heading-sm-size);
+  font-weight: var(--text-heading-sm-weight);
+  line-height: var(--text-heading-sm-line-height);
+  letter-spacing: var(--text-heading-sm-letter-spacing);
+}
+
+h6 {
+  font-size: var(--text-heading-xs-size);
+  font-weight: var(--text-heading-xs-weight);
+  line-height: var(--text-heading-xs-line-height);
+  letter-spacing: var(--text-heading-xs-letter-spacing);
+}
+
+/* Paragraph styles */
+p {
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+
+/* List reset */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Table reset */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Code and pre */
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-mono);
+  font-size: var(--text-code-size);
+}
+
+pre {
+  overflow-x: auto;
+  white-space: pre;
+}
+
+code {
+  padding: var(--spacing-0-5) var(--spacing-1);
+  background-color: var(--color-bg-surface);
+  border-radius: var(--radius-sm);
+}
+
+pre code {
+  padding: 0;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+/* Strong and emphasis */
+strong,
+b {
+  font-weight: var(--font-weight-semibold);
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+/* Small text */
+small {
+  font-size: var(--font-size-sm);
+}
+
+/* Horizontal rule */
+hr {
+  border: none;
+  border-top: var(--border-width-thin) solid var(--color-border-default);
+  margin: var(--spacing-8) 0;
+}
+
+/* Blockquote */
+blockquote {
+  padding-left: var(--spacing-4);
+  border-left: var(--border-width-thick) solid var(--color-border-brand);
+  font-style: italic;
+  color: var(--color-fg-secondary);
+}
+
+/* ==========================================================================
+   FOCUS STYLES
+   ========================================================================== */
+
+/* Remove default focus outline, add custom on focus-visible */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+/* Specific focus for interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+/* ==========================================================================
+   SELECTION STYLES
+   ========================================================================== */
+
+::selection {
+  background-color: var(--color-brand-600);
+  color: var(--color-fg-primary);
+}
+
+/* ==========================================================================
+   SCROLLBAR STYLES
+   ========================================================================== */
+
+/* WebKit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-emphasis);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-fg-tertiary);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-emphasis) var(--color-bg-tertiary);
+}
+
+/* ==========================================================================
+   PAGE STRUCTURE
+   ========================================================================== */
+
+#page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-top: var(--header-height);
+}
+
+#main-content {
+  flex: 1;
+}
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: ' (' attr(href) ')';
+  }
+
+  pre {
+    white-space: pre-wrap !important;
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  img {
+    page-break-inside: avoid;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}

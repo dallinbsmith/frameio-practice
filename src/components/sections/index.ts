@@ -1,0 +1,9 @@
+export { Hero } from './Hero';
+export { Metrics } from './Metrics';
+export { Features } from './Features';
+export { CTA } from './CTA';
+export { Testimonials } from './Testimonials';
+export { LogoCloud } from './LogoCloud';
+export { Pricing } from './Pricing';
+export { FAQ } from './FAQ';
+export { SectionRenderer } from './SectionRenderer';

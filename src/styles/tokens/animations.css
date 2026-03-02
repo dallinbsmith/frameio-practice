@@ -1,0 +1,482 @@
+/**
+ * ==========================================================================
+ * ANIMATION TOKENS
+ * ==========================================================================
+ *
+ * Animation system following Frame.io's "Fluid UI" principles:
+ *
+ * 1. INSTANT (≤100ms)
+ *    - User input must feel immediate
+ *    - Hover states, button presses, toggles
+ *
+ * 2. SMOOTH (60fps)
+ *    - All animations target 60fps
+ *    - CSS-first approach (GPU-accelerated)
+ *    - Avoid layout thrashing
+ *
+ * 3. COORDINATED
+ *    - Related elements animate together
+ *    - Staggered sequences feel natural
+ *    - Motion guides attention
+ *
+ * ==========================================================================
+ */
+
+:root {
+  /* ========================================================================
+     DURATION SCALE
+     ========================================================================
+     Following human perception thresholds:
+     - <100ms: Feels instant
+     - 100-300ms: Quick, responsive
+     - 300-500ms: Noticeable, deliberate
+     - >500ms: Slow, use sparingly
+  */
+
+  --duration-0: 0ms;
+  --duration-75: 75ms;
+  --duration-100: 100ms;
+  --duration-150: 150ms;
+  --duration-200: 200ms;
+  --duration-300: 300ms;
+  --duration-400: 400ms;
+  --duration-500: 500ms;
+  --duration-700: 700ms;
+  --duration-1000: 1000ms;
+
+  /* Semantic Durations */
+  --duration-instant: var(--duration-75); /* Micro-interactions */
+  --duration-fast: var(--duration-150); /* Hover, focus states */
+  --duration-normal: var(--duration-200); /* Standard transitions */
+  --duration-moderate: var(--duration-300); /* Content changes */
+  --duration-slow: var(--duration-500); /* Large movements */
+  --duration-slower: var(--duration-700); /* Page transitions */
+
+  /* ========================================================================
+     EASING FUNCTIONS
+     ========================================================================
+     Custom cubic-bezier curves for natural motion.
+
+     Reference: https://easings.net/
+  */
+
+  /* Standard Easings */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Expressive Easings - for emphasis and delight */
+  --ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+  --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  --ease-in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
+
+  /* Spring-like Easings - natural, organic motion */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-spring-soft: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-bounce-soft: cubic-bezier(0.34, 1.2, 0.64, 1);
+
+  /* Smooth Deceleration - for entrances */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Smooth Acceleration - for exits */
+  --ease-in-expo: cubic-bezier(0.7, 0, 0.84, 0);
+
+  /* Default Easing */
+  --ease-default: var(--ease-out-cubic);
+
+  /* ========================================================================
+     TRANSITION PRESETS
+     ========================================================================
+     Pre-composed transitions for common use cases.
+  */
+
+  /* Property-specific transitions */
+  --transition-colors:
+    color var(--duration-fast) var(--ease-default),
+    background-color var(--duration-fast) var(--ease-default),
+    border-color var(--duration-fast) var(--ease-default),
+    fill var(--duration-fast) var(--ease-default),
+    stroke var(--duration-fast) var(--ease-default);
+
+  --transition-opacity: opacity var(--duration-normal) var(--ease-default);
+
+  --transition-transform: transform var(--duration-normal) var(--ease-default);
+
+  --transition-shadow: box-shadow var(--duration-fast) var(--ease-default);
+
+  /* Combined transitions */
+  --transition-all: all var(--duration-normal) var(--ease-default);
+
+  --transition-interactive:
+    color var(--duration-fast) var(--ease-default),
+    background-color var(--duration-fast) var(--ease-default),
+    border-color var(--duration-fast) var(--ease-default),
+    box-shadow var(--duration-fast) var(--ease-default),
+    transform var(--duration-fast) var(--ease-default);
+
+  --transition-button:
+    background-color var(--duration-fast) var(--ease-default),
+    border-color var(--duration-fast) var(--ease-default),
+    color var(--duration-fast) var(--ease-default),
+    box-shadow var(--duration-fast) var(--ease-default),
+    transform var(--duration-instant) var(--ease-default);
+
+  --transition-link:
+    color var(--duration-fast) var(--ease-default),
+    text-decoration-color var(--duration-fast) var(--ease-default);
+
+  --transition-fade:
+    opacity var(--duration-normal) var(--ease-default),
+    visibility var(--duration-normal) var(--ease-default);
+
+  --transition-slide:
+    transform var(--duration-moderate) var(--ease-out-expo),
+    opacity var(--duration-moderate) var(--ease-default);
+
+  --transition-scale: transform var(--duration-normal) var(--ease-spring-soft);
+
+  /* ========================================================================
+     ANIMATION TIMING
+     ========================================================================
+     Delay values for staggered animations.
+  */
+
+  --delay-none: 0ms;
+  --delay-75: 75ms;
+  --delay-100: 100ms;
+  --delay-150: 150ms;
+  --delay-200: 200ms;
+  --delay-300: 300ms;
+  --delay-500: 500ms;
+  --delay-700: 700ms;
+  --delay-1000: 1000ms;
+
+  /* Stagger increments for sequential animations */
+  --stagger-fast: 50ms;
+  --stagger-normal: 100ms;
+  --stagger-slow: 150ms;
+
+  /* ========================================================================
+     TRANSFORM VALUES
+     ========================================================================
+     Common transform values for animations.
+  */
+
+  --translate-xs: 0.25rem; /* 4px */
+  --translate-sm: 0.5rem; /* 8px */
+  --translate-md: 1rem; /* 16px */
+  --translate-lg: 1.5rem; /* 24px */
+  --translate-xl: 2rem; /* 32px */
+  --translate-2xl: 3rem; /* 48px */
+
+  --scale-95: 0.95;
+  --scale-100: 1;
+  --scale-102: 1.02;
+  --scale-105: 1.05;
+  --scale-110: 1.1;
+
+  --rotate-45: 45deg;
+  --rotate-90: 90deg;
+  --rotate-180: 180deg;
+}
+
+/* ==========================================================================
+   KEYFRAME ANIMATIONS
+   ========================================================================== */
+
+/* Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fade Out */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Fade In Up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(var(--translate-md));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade In Down */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--translate-md) * -1));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade In Left */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(calc(var(--translate-md) * -1));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Fade In Right */
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(var(--translate-md));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale In */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(var(--scale-95));
+  }
+  to {
+    opacity: 1;
+    transform: scale(var(--scale-100));
+  }
+}
+
+/* Scale Out */
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(var(--scale-100));
+  }
+  to {
+    opacity: 0;
+    transform: scale(var(--scale-95));
+  }
+}
+
+/* Slide In From Bottom */
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Slide Out To Bottom */
+@keyframes slideOutToBottom {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+/* Slide In From Right */
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Slide Out To Right */
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* Pulse */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Spin */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Bounce */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(-5%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* Shake */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
+
+/* Skeleton Loading */
+@keyframes skeleton {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ==========================================================================
+   ANIMATION UTILITY CLASSES
+   ========================================================================== */
+
+/* Base animation class */
+.animate {
+  animation-fill-mode: both;
+}
+
+/* Animation names */
+.animate-fade-in {
+  animation: fadeIn var(--duration-normal) var(--ease-default);
+}
+
+.animate-fade-out {
+  animation: fadeOut var(--duration-normal) var(--ease-default);
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp var(--duration-moderate) var(--ease-out-expo);
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown var(--duration-moderate) var(--ease-out-expo);
+}
+
+.animate-scale-in {
+  animation: scaleIn var(--duration-normal) var(--ease-spring-soft);
+}
+
+.animate-slide-in-bottom {
+  animation: slideInFromBottom var(--duration-moderate) var(--ease-out-expo);
+}
+
+.animate-slide-in-right {
+  animation: slideInFromRight var(--duration-moderate) var(--ease-out-expo);
+}
+
+.animate-pulse {
+  animation: pulse 2s var(--ease-in-out) infinite;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+.animate-shake {
+  animation: shake 0.5s var(--ease-default);
+}
+
+/* Skeleton loading state */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-bg-surface) 25%,
+    var(--color-bg-elevated) 50%,
+    var(--color-bg-surface) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton 1.5s var(--ease-in-out) infinite;
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate,
+  .animate-fade-in,
+  .animate-fade-out,
+  .animate-fade-in-up,
+  .animate-fade-in-down,
+  .animate-scale-in,
+  .animate-slide-in-bottom,
+  .animate-slide-in-right,
+  .animate-pulse,
+  .animate-spin,
+  .animate-bounce,
+  .animate-shake {
+    animation: none !important;
+  }
+}

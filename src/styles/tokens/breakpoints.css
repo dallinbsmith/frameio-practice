@@ -1,0 +1,206 @@
+/**
+ * ==========================================================================
+ * BREAKPOINT TOKENS
+ * ==========================================================================
+ *
+ * Responsive breakpoint system for consistent media queries.
+ *
+ * Note: CSS custom properties cannot be used directly in media queries,
+ * so these are documented here for reference and implemented in:
+ * 1. JavaScript (via src/lib/utils/breakpoints.ts)
+ * 2. Styled Components theme
+ * 3. Directly in media queries with the actual values
+ *
+ * Breakpoint Strategy: Mobile-First
+ * - Base styles target mobile
+ * - Use min-width queries to progressively enhance
+ *
+ * ==========================================================================
+ */
+
+:root {
+  /* ========================================================================
+     BREAKPOINT VALUES (for reference)
+     ========================================================================
+     These cannot be used in media queries but are useful for:
+     - JavaScript-based responsive logic
+     - CSS calculations within elements
+     - Documentation
+
+     Breakpoint Scale:
+     - xs:  320px  - Small phones (rare, but supported)
+     - sm:  640px  - Large phones, small tablets
+     - md:  768px  - Tablets portrait
+     - lg:  1024px - Tablets landscape, small laptops
+     - xl:  1280px - Laptops, desktops
+     - 2xl: 1536px - Large desktops
+     - 3xl: 1920px - Full HD monitors
+  */
+
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  --breakpoint-3xl: 1920px;
+
+  /* ========================================================================
+     CONTAINER QUERIES SUPPORT
+     ========================================================================
+     Container query breakpoints for component-level responsiveness.
+  */
+
+  --container-query-xs: 200px;
+  --container-query-sm: 300px;
+  --container-query-md: 400px;
+  --container-query-lg: 500px;
+  --container-query-xl: 600px;
+}
+
+/* ==========================================================================
+   BREAKPOINT UTILITY CLASSES
+   ==========================================================================
+   Show/hide elements at specific breakpoints.
+   These use the actual pixel values since CSS vars don't work in @media.
+*/
+
+/* Hide on mobile, show on tablet and up */
+.hidden-mobile {
+  display: none;
+}
+@media (min-width: 768px) {
+  .hidden-mobile {
+    display: revert;
+  }
+}
+
+/* Show on mobile, hide on tablet and up */
+.mobile-only {
+  display: revert;
+}
+@media (min-width: 768px) {
+  .mobile-only {
+    display: none;
+  }
+}
+
+/* Hide on tablet, show on desktop and up */
+.hidden-tablet {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .hidden-tablet {
+    display: revert;
+  }
+}
+
+/* Show on tablet, hide on desktop and up */
+.tablet-only {
+  display: revert;
+}
+@media (min-width: 1024px) {
+  .tablet-only {
+    display: none;
+  }
+}
+
+/* Hide on desktop */
+.hidden-desktop {
+  display: revert;
+}
+@media (min-width: 1024px) {
+  .hidden-desktop {
+    display: none;
+  }
+}
+
+/* Desktop only */
+.desktop-only {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .desktop-only {
+    display: revert;
+  }
+}
+
+/* ==========================================================================
+   CONTAINER QUERY SETUP
+   ==========================================================================
+   Apply 'container-type: inline-size' to enable container queries.
+*/
+
+.container-query {
+  container-type: inline-size;
+}
+
+.container-query-normal {
+  container-type: normal;
+}
+
+/* Named containers for specific components */
+.container-card {
+  container-type: inline-size;
+  container-name: card;
+}
+
+.container-sidebar {
+  container-type: inline-size;
+  container-name: sidebar;
+}
+
+.container-main {
+  container-type: inline-size;
+  container-name: main;
+}
+
+/* ==========================================================================
+   RESPONSIVE GRID COLUMNS
+   ==========================================================================
+   Utility classes for responsive grid layouts.
+*/
+
+.grid-cols-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: var(--spacing-6);
+}
+
+/* Responsive columns: 1 on mobile → 2 on tablet → 3 on desktop */
+.grid-responsive-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-6);
+}
+
+@media (min-width: 640px) {
+  .grid-responsive-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Responsive columns: 1 on mobile → 2 on tablet → 4 on desktop */
+.grid-responsive-4 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-6);
+}
+
+@media (min-width: 640px) {
+  .grid-responsive-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
