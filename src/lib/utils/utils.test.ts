@@ -181,13 +181,11 @@ describe('cn (className utility)', () => {
     });
 
     it('handles Tailwind-style utility classes', () => {
-      const result = cn(
-        'flex',
-        'items-center',
-        'justify-between',
-        'p-4',
-        { 'bg-blue-500': true, 'text-white': true, hidden: false }
-      );
+      const result = cn('flex', 'items-center', 'justify-between', 'p-4', {
+        'bg-blue-500': true,
+        'text-white': true,
+        hidden: false,
+      });
 
       expect(result).toBe(
         'flex items-center justify-between p-4 bg-blue-500 text-white'
@@ -542,7 +540,12 @@ describe('Breakpoints', () => {
     });
 
     it('can be used for sorting', () => {
-      const unsorted: Array<'lg' | 'xs' | 'md' | 'sm'> = ['lg', 'xs', 'md', 'sm'];
+      const unsorted: Array<'lg' | 'xs' | 'md' | 'sm'> = [
+        'lg',
+        'xs',
+        'md',
+        'sm',
+      ];
       const sorted = [...unsorted].sort(compareBreakpoints);
       expect(sorted).toEqual(['xs', 'sm', 'md', 'lg']);
     });
