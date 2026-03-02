@@ -5,6 +5,10 @@ This project demonstrates modern React patterns, TypeScript best practices, and
 enterprise-grade frontend architecture.
 
 [![CI](https://github.com/dallinbsmith/frameio-practice/actions/workflows/ci.yml/badge.svg)](https://github.com/dallinbsmith/frameio-practice/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/dallinbsmith/frameio-practice/graph/badge.svg)](https://codecov.io/gh/dallinbsmith/frameio-practice)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.4-blue.svg)](https://www.typescriptlang.org/)
+[![Node](https://img.shields.io/badge/Node-%3E%3D18.17-green.svg)](https://nodejs.org/)
 
 ## Tech Stack
 
