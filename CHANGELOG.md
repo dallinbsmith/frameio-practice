@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- Comprehensive tests for `lib/utils` module (cn, breakpoints) - 75 tests
+- Total test count: 617 → 692
+
 ## [1.0.0] - 2026-03-02
 
 ### Added
