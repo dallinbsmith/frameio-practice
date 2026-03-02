@@ -43,6 +43,18 @@ constructive in all interactions.
    git checkout -b feature/your-feature-name
    ```
 
+### Pre-commit Hooks
+
+This project uses [Husky](https://typicode.github.io/husky/) and
+[lint-staged](https://github.com/okonet/lint-staged) to run checks before each
+commit:
+
+- **ESLint**: Checks for linting errors in staged `.ts` and `.tsx` files
+- **Prettier**: Formats all staged files
+
+The hooks are installed automatically when you run `npm install`. If a check
+fails, the commit will be blocked until you fix the issues.
+
 ## Development Workflow
 
 ### Running the Development Server

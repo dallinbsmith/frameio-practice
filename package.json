@@ -1,8 +1,27 @@
 {
   "name": "frameio-marketing-study",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
-  "description": "A study guide application replicating Frame.io marketing site architecture",
+  "description": "A comprehensive Next.js 14 study project for Frame.io interview preparation",
+  "author": "Dallin Smith",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dallinbsmith/frameio-practice.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dallinbsmith/frameio-practice/issues"
+  },
+  "homepage": "https://github.com/dallinbsmith/frameio-practice#readme",
+  "keywords": [
+    "nextjs",
+    "react",
+    "typescript",
+    "study-guide",
+    "frameio",
+    "marketing-site",
+    "interview-prep"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -18,7 +37,7 @@
     "test:ui": "vitest --ui",
     "clean": "rm -rf .next out node_modules coverage",
     "ci": "npm run lint && npm run typecheck && npm run test:run && npm run build",
-    "prepare": "echo 'Ready for development'"
+    "prepare": "husky"
   },
   "dependencies": {
     "next": "^14.2.0",
@@ -43,7 +62,9 @@
     "eslint-config-next": "^14.2.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.0",
+    "husky": "^9.1.7",
     "jsdom": "^24.0.0",
+    "lint-staged": "^16.3.1",
     "prettier": "^3.2.0",
     "typescript": "^5.4.0",
     "vitest": "^1.4.0"
@@ -51,5 +72,18 @@
   "engines": {
     "node": ">=18.17.0"
   },
-  "packageManager": "npm@10.0.0"
+  "packageManager": "npm@10.0.0",
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
+  }
 }
